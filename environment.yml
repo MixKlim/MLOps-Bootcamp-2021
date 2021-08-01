@@ -1,0 +1,19 @@
+name: mlops
+channels:
+  - defaults
+  - conda-forge
+dependencies:
+  - python=3.8
+  - ipykernel
+  - matplotlib
+  - pandas
+  - scipy
+  - scikit-learn
+  - plotly
+  - nbformat>=4.2.0
+  - pip:
+    - azureml-core
+    - azureml-dataset-runtime[fuse]
+    - azureml-pipeline-core
+    - azureml-pipeline-steps
+    - workalendar
