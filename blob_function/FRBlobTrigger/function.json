@@ -2,11 +2,18 @@
   "scriptFile": "__init__.py",
   "bindings": [
     {
-      "name": "myblob",
+      "name": "inputBlob",
       "type": "blobTrigger",
       "direction": "in",
       "path": "predictions-input/{name}",
-      "connection": "mlworkspace0341058727_STORAGE"
+      "connection": "StorageConnectionString"
+    },
+    {
+      "name": "predictions",
+      "type": "blob",
+      "direction": "out",
+      "path": "predictions-output/{name}",
+      "connection": "StorageConnectionString"
     }
   ]
 }
