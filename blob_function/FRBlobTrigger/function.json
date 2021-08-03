@@ -5,14 +5,14 @@
       "name": "inputBlob",
       "type": "blobTrigger",
       "direction": "in",
-      "path": "predictions-input/{name}",
+      "path": "predictions-input/{name}.csv",
       "connection": "StorageConnectionString"
     },
     {
       "name": "predictions",
       "type": "blob",
       "direction": "out",
-      "path": "predictions-output/{name}",
+      "path": "predictions-output/{name}.csv",
       "connection": "StorageConnectionString"
     }
   ]

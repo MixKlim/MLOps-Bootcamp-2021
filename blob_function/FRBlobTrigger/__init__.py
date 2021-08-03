@@ -15,8 +15,8 @@ def main(inputBlob: func.InputStream, predictions: func.Out[str]):
     df_load_rt = df.copy(deep=True).reset_index()[["load_actuals_mw"]]
     df_load_rt["data_index_"] = pd.to_datetime(df.reset_index()["data_index_"]) + datetime.timedelta(minutes=15)
     df_load_rt = df_load_rt.set_index("data_index_").rename(columns={"load_actuals_mw": "predictions"})
-    prediction = df_load_rt['predictions'].to_numpy()
+    timestamp = df_load_rt.index.strftime("%Y-%m-%d %H:%M:%S").to_numpy()[0]
+    prediction = df_load_rt['predictions'].to_numpy()[0]
 
     # logging.info(f"prediction: {prediction}")
-    result = np.array_str(prediction)
-    predictions.set(result)
+    predictions.set("data_index_,predictions_mw" + '\n' + str(timestamp) + ',' + str(prediction))
