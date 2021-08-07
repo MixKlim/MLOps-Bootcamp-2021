@@ -1,12 +1,12 @@
 # Feedback:
 
-Congrats on finishing up and presenting the bootcamp!
+Congrats on finishing up and presenting the Bootcamp!
 Overall the project reached the goal: Having a model that allows us to determine our energy consumption. 
 
 ## Top Highlights of the project:
 
-- The goal was achieved in two different ways, with batch and near real time monitoring dashboard.
-- The batch monitoring takes seasonality seasonality into account
+- The goal was achieved in two different ways, with batch, and near real-time monitoring dashboard.
+- The batch monitoring takes seasonality into account
 - The blob function is set up properly with its requirements, and triggers.
 
 ## Points to improve:
