@@ -57,5 +57,61 @@ Last commit to the repository has to be pushed **before 12:00 CEST Amsterdam tim
 The link to the Github repository and the team number should be shared in [#mlops_bootcamp_pyladies_amsterdam channel](https://pyladies.slack.com/archives/C026H5HMF4L) **before 14:00 CEST Amsterdam time on the 7th of August**
 
 ---
-## Video record
+## Video recording
 Watch the recording of the Capstone results [here]( https://youtu.be/aLReepA68Nk).
+
+---
+## Project structure
+```bash
+MLOps-Bootcamp-2021
+|   config.json                             # Azure ML configuration file
+|   environment.yml                         # Environment YAML file
+|	batch-data                          # Datasets for batch processing
+|	batch-results                       # Batch processed datasets
++---batch_pipeline                          # Code for batch processing pipeline
+|       batch_environment.yml
+|       score.py
+|       
++---blob_function                           # Code for Azure Blob Trigger function
+|   |   .funcignore
+|   |   .gitignore
+|   |   host.json
+|   |   local.settings.json                 # Local settings for Azurite
+|   |   proxies.json
+|   |   requirements.txt
+|   |
+|   \---FRBlobTrigger
+|       |   function.json                   # Trigger settings
+|       |   readme.md
+|       |   sample.dat
+|       \   __init__.py                     # Main trigger function
+|               
++---dashboards                              # Power BI dashboards
+|       batch_dashboard.pbix
+|       realtime_dashboard.pbix
+|       
++---data                                    # Original and processed datasets
+|       energy_data_15_min.csv
+|       energy_data_daily.csv
+|       energy_data_realtime.csv
+|       load_actuals.csv
+|       weather.csv
+|       wind_solar_predictions.csv
+|       
++---models                                  # Model pickle files
+|       baseline.pkl
+|       fourier.pkl
+|       
++---notebooks                               # Jupyter notebooks
+|   |   process_data.ipynb                  # Notebook for initial data processing
+|   |   model_training_evaluation.ipynb     # Notebook for training and evaluation of models 
+|   |   generate_data.ipynb                 # Notebook for batch and real-time data generation
+|   \   create_batch_pipeline.ipynb         # Notebook for initialisation and scheduling of the batch pipeline
+|                   
++---outputs # Metrics for different models
+|       MAPE.png
+|       MAPE_baseline.png
+|       MAPE_fourier.png
+|       
+\---realtime-data                           # Input datasets for real-time processing
+```
