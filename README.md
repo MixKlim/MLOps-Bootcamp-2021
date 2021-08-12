@@ -108,7 +108,7 @@ MLOps-Bootcamp-2021
 |   |   generate_data.ipynb                 # Notebook for batch and real-time data generation
 |   \   create_batch_pipeline.ipynb         # Notebook for initialisation and scheduling of the batch pipeline
 |                   
-+---outputs # Metrics for different models
++---outputs                                 # Metrics for different models
 |       MAPE.png
 |       MAPE_baseline.png
 |       MAPE_fourier.png
