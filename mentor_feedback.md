@@ -41,11 +41,11 @@ _Batch model_
 
 As the batch model generates predictions on a daily level for the upcoming week, it is better to train the model on data, aggregated on daily level. So, train test split with aggregated and registered data is expected to be done before running this notebook. Train dataset will be used for training and validating the models, test dataset will be used for model evaluations.
 
-Feature engineering for a set of linear regression models could be translated into functions (such as two functions provided for you in the capstone notebook). It is important to have in place, as it could be easily translated to Python script and run as a part of scheduled training/retraining job in the future. On top of it, all functions could be easily tested with pytest or unittest.
+Feature engineering for a set of linear regression models could be translated into functions (such as two functions provided for you in the capstone notebook). It is important to have in place, as it could be easily translated to Python script and run as a part of scheduled training/retraining job in the future. On top of it, all functions could be easily tested with pytest or unittest and great expectations.
 
-
-TODO: add comments on
-model evaluation (MAPE - backtesting)
+TODO:  add comments on
+Model evaluation
+(MAPE - backtesting)
 
 TODO:  add comments on
 batch pipeline
