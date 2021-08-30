@@ -16,7 +16,7 @@ Overall the project reached the goal: Having a model that allows us to determine
 - The naming of the variables can improve as well, for instance when picking up one week of data, the variable for this is called X. When working on a team, this can lead to confusion, and more time spent in reading the code in order to maintain it.
 
 ## Additional feedback:
-**Notebook `process_data.ipynb`**.
+**Notebook `process_data.ipynb`**
 
 The goal of this notebook is a little bit fuzzy. Is it EDA? Is it a data preprocessing for a specific use case (batch and near real-time processing)?
 
@@ -33,7 +33,7 @@ Regarding Dashboiard KPI and splitting the data into three quantiles. This is no
 
 Where is the train test split taking place? Creating features and transforming data before this split could lead to data leakage, that we have to avoid.
 
-**Notebook `model_training_evaluation.ipynb`**.
+**Notebook `model_training_evaluation.ipynb`**
 
 The same advice to keep batch and near real-time model separately.
 
@@ -74,12 +74,19 @@ In case with expanding window you will train and test the same amount of models 
 - 01/01/2020-01/12/2020 train, 01/12/2020-01/02/2021 test
 - 01/01/2020-01/01/2021 train, 01/01/2021-01/03/2021 test
 
+**Notebook `create_batch_pipeline.ipynb`**
 
-TODO:  add comments on
-batch pipeline
+Recommendations: pin libraries in batch_environment.yml for batch inference, replace DEFAULT_CPU_IMAGE with the image containing your Python version.
 
-TODO: add comments on
-azure functions
+The pipeline delivers the load predictions, which later should be transformed into the input for the dashboard. It could be executed in different ways:
+- as a last step of the pipeline,
+- as a separate process, that reads load predictions, reads wind and solar predictions and calculate the results to be displayed on the dashboard,
+- as a part of dashboard processing.
 
-TODO: add comments on
-overall structure, yamls, txts
+**Blob-triggered Azure function**
+
+For the simplicity of the Capstone 1 function should be responsible for generating the output for the dashboard. In real life scenario it will be a sequence of functions, one function will produce load predictions, another function will call API to get wind and solar predictions and add them together, third function can generate the output for the dashboard.
+
+In your case I am wondering what kind of load predictions you can get if you read data from your realtime-data folder (each file contains exactly 1 row)?
+
+**Overall structure**
