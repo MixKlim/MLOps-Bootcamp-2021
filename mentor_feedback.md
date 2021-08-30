@@ -90,3 +90,8 @@ For the simplicity of the Capstone 1 function should be responsible for generati
 In your case I am wondering what kind of load predictions you can get if you read data from your realtime-data folder (each file contains exactly 1 row)?
 
 **Overall structure**
+It is unclear whether should I use environment.yml for all notebooks? The best way is to split conda environments per notebook, as each of them required diffetent set of libraries.
+
+Also I was confused about the content of data folder, is it original raw data or transformed and processed data all together?
+
+I would rather have folders dedicated per each scenario: batch, near real-time, and move all related folders into the dedicated ones.
