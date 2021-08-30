@@ -41,11 +41,39 @@ _Batch model_
 
 As the batch model generates predictions on a daily level for the upcoming week, it is better to train the model on data, aggregated on daily level. So, train test split with aggregated and registered data is expected to be done before running this notebook. Train dataset will be used for training and validating the models, test dataset will be used for model evaluations.
 
-Feature engineering for a set of linear regression models could be translated into functions (such as two functions provided for you in the capstone notebook). It is important to have in place, as it could be easily translated to Python script and run as a part of scheduled training/retraining job in the future. On top of it, all functions could be easily tested with pytest or unittest and great expectations.
+Feature engineering for a linear regression model could be encapsulated into functions (such as two functions provided for you in the capstone notebook). The functions from the notebook could be easily translated to Python script and run as a part of scheduled training/retraining job in the future. On top of it, all functions could be easily tested with pytest or unittest framework.
 
-TODO:  add comments on
-Model evaluation
-(MAPE - backtesting)
+_Backtesting_
+
+In our case we need to baktest batch models with a sliding window approach and based our choice on MAPE.
+
+To start with we need to define the size of the sliding window and a step. Each window is split into training data, which is used to train the model, and testing data, which is used to calculate the error rate for the trained model.
+
+For example: historical training data contains datapoints between 01/01/2020 and 01/03/2021 (14 months); sliding window size is 5 months (where 3 months to train and 2 months to test), step - 1 month. As a result you need to train and test 10 models on the following windows:
+- 01/01/2020-01/04/2020 train, 01/04/2020-01/06/2020 test
+- 01/02/2020-01/05/2020 train, 01/05/2020-01/07/2020 test
+- 01/03/2020-01/06/2020 train, 01/06/2020-01/08/2020 test
+- 01/04/2020-01/07/2020 train, 01/07/2020-01/09/2020 test
+- 01/05/2020-01/08/2020 train, 01/08/2020-01/10/2020 test
+- 01/06/2020-01/09/2020 train, 01/09/2020-01/11/2020 test
+- 01/07/2020-01/10/2020 train, 01/10/2020-01/12/2020 test
+- 01/08/2020-01/11/2020 train, 01/11/2020-01/01/2021 test
+- 01/09/2020-01/12/2020 train, 01/12/2020-01/02/2021 test
+- 01/10/2020-01/01/2021 train, 01/01/2021-01/03/2021 test
+
+In case with expanding window you will train and test the same amount of models (in our case 10), but the training window will look differently.
+
+- 01/01/2020-01/04/2020 train, 01/04/2020-01/06/2020 test
+- 01/01/2020-01/05/2020 train, 01/05/2020-01/07/2020 test
+- 01/01/2020-01/06/2020 train, 01/06/2020-01/08/2020 test
+- 01/01/2020-01/07/2020 train, 01/07/2020-01/09/2020 test
+- 01/01/2020-01/08/2020 train, 01/08/2020-01/10/2020 test
+- 01/01/2020-01/09/2020 train, 01/09/2020-01/11/2020 test
+- 01/01/2020-01/10/2020 train, 01/10/2020-01/12/2020 test
+- 01/01/2020-01/11/2020 train, 01/11/2020-01/01/2021 test
+- 01/01/2020-01/12/2020 train, 01/12/2020-01/02/2021 test
+- 01/01/2020-01/01/2021 train, 01/01/2021-01/03/2021 test
+
 
 TODO:  add comments on
 batch pipeline
